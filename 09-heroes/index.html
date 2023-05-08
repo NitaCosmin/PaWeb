@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./assets/js/repository.js"></script>
+  <script src="./assets/js/model.js"></script>
+  <script>
+    
+    let repository = new Repository();
+   
+    let model = new Model(repository);
+
+    console.log('Heroes, initially:');
+    model.displayAllHeroes();
+
+    
+    try {
+      model.createHero({ name: 'Frank', level: 'senior' });
+    } catch (error) {
+      console.log(`Error on creating hero. ${error.message}`);
+    }
+    console.log('Heroes, after creation of Frank:');
+    model.displayAllHeroes();
+
+    model.deleteHero('Frank');
+    console.log('Heroes, after deletion of Frank:');
+    model.displayAllHeroes();
+
+    try {
+      model.updateHero('Dave', { name: 'Dave', level: '' });
+    } catch (error) {
+      console.log(`Error on updating hero. ${error.message}`);
+    }
+    console.log('Heroes, after failed update:');
+    model.displayAllHeroes();
+
+    model.updateHero('Dave', { name: 'Jake', level: 'middle' });
+    console.log('Heroes, after successful level update:');
+    model.displayAllHeroes();
+
+    try {
+      model.updateHero('Dave', { name: 'Yo', level: 'middle' });
+    } catch (error) {
+      console.log(`Error on updating hero. ${error.message}`);
+    }
+    console.log('Heroes, after failed name update:');
+    model.displayAllHeroes();
+
+    try {
+      model.updateHero('Dave', { name: 'Bob', level: 'middle' });
+    } catch (error) {
+      console.log(`Error on updating hero. ${error.message}`);
+    }
+    console.log('Heroes, after failed name update:');
+    model.displayAllHeroes();
+
+    model.updateHero('Dave', { name: 'Steve', level: 'middle' });
+    console.log('Heroes, after successful name update:');
+    model.displayAllHeroes();
+    
+  </script>
+</head>
+<body>
+  Hello
+</body>
+</html>
